@@ -8,7 +8,6 @@ namespace Plato.Collections.Tests
         public static IEnumerable<ISequence<int>> TestSequences()
         {
             yield break;
-
         }
 
         public static void Test()
