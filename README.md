@@ -30,15 +30,20 @@ interface IEnumerable<T>
 }
 ```
 
-The `Plato.ISequence<T>` type is quite similar, but only represents immutable types.
+The `Plato.ISequence<T>` type is quite similar, but only represents immutable types. One of the advantages
+of an `ISequence` is that it can safely be enumerated multiple times, and has a hard guarantee of never 
+changing under. 
 
 ```csharp
-interface IEnumerable<T> 
+interface ISequence<T> 
 {
     IIterator<T> Iterator { get; } 
 }
 ```
 
+The `IIterator<T>` type returned from the `Iterator` property, is also an immutable type unlike `IEnumerable`. 
+This affords several advantages such as the fact that a collection of iterators can be safely made representing different 
+locations in a sequence.  
 
 ## IIterator versus IEnumerator 
 
@@ -64,6 +69,11 @@ interface IIterator<T>
     IIterator<T> Next { get; }
 }
 ```
+
+Notice that `IIterator<T>` cannot be disposed, nor can it be reset. Unlike the `IEnumerator` 
+it is initialized to point to the first element in a sequence, as opposed to pointing to a location before the 
+first spot (`IEnumerator` requires an initial call to `MoveNext()` before values can be retrieved). 
+
 
 ## IArray vs LINQ on Array
 
@@ -97,6 +107,7 @@ Some of the additional types provided by Plato.Collections library includes:
 * `IMultiDictionary<TKey, TValue>`
 * `IBiDictionary<TKey, TValue>`
 
+<!--
 ## Dependencies 
 
 TODO.
@@ -120,3 +131,4 @@ TODO.
 ## History
 
 TODO.
+-->
