@@ -24,8 +24,8 @@ namespace Plato
     }
 
     /// <summary>
-    /// A sequence is roughly equivalent of IEnumerable in the C# standard library. 
-    /// It is a potentially infinite sequence of values. Unlike IEnumerable
+    /// A sequence is roughly equivalent of ISequence in the C# standard library. 
+    /// It is a potentially infinite sequence of values. Unlike ISequence
     /// it is guaranteed to have no side effects and can be enumerated multiple times. 
     /// </summary>
     public interface ISequence<T>
@@ -245,5 +245,91 @@ namespace Plato
     public interface IComparer<T>
     {
         int Compare(T x, T y);
+    }
+
+    //==
+
+    public interface IList<T> { }
+
+    public interface ILinkedList<T>
+    {
+        IIterator<T> Head { get; }
+    }
+
+    public interface IDoubleLinkedList<T>
+    {
+    }
+
+    public interface ISuffixTree { }
+
+    public interface ITrie { }
+
+    public interface IPatriciaTrie { }
+
+    public interface IKdTree { }
+
+    public interface IBinary { }
+
+    public interface ISparseArray { }
+
+    public interface IDoubleEndedPriorityQueue { }
+
+    // https://en.wikipedia.org/wiki/Min-max_heap
+    public interface IMinMaxHeap { }
+
+    // https://en.wikipedia.org/wiki/Multiset
+    public interface IMultiSet<T> : ICounted
+    {
+        int Multiplicity(T x);
+        
+        // NOTE: int Cardinality => Count;
+    }
+
+    // https://en.wikipedia.org/wiki/Skip_list
+    public interface ISkipList<T> 
+    { }
+
+    public interface IBinaryTreeNode<T>
+    {
+        IBinaryTreeNode<T> Left { get; }
+        IBinaryTreeNode<T> Right { get; }
+    }
+
+    public interface IRedBlackTreeNode<T> : IBinaryTreeNode<T>
+    {
+        bool RedOrBlack { get; }
+    }
+
+    // https://en.wikipedia.org/wiki/B-tree
+    public interface IBTree<T>
+    { }
+
+    // https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+    public interface IRedBlackTree<T>
+    {
+    }
+
+    // https://en.wikipedia.org/wiki/Splay_tree
+    [Mutable]
+    public interface ISplayTree<T>
+    {
+        // ??
+    }
+
+    public interface IAvlTreeNode<T> : IBinaryTreeNode<T>
+    {
+        bool LeftHeavy { get; }
+        bool RightHeavy { get; }
+    }
+
+    // https://en.wikipedia.org/wiki/AVL_tree
+    public interface IAvlTree<T>
+    {
+        IAvlTreeNode<T> Root { get; }
+    }
+
+    public interface ITwoThreeTree<T>
+    {
+        
     }
 }

@@ -31,7 +31,16 @@
     }
 
     [Mutable]
-    public interface Dictionary<TKey, TValue> : IMap<TKey, TValue>
+    public interface IMutableDictionary<TKey, TValue> : IMap<TKey, TValue>
     {
+        void AddOrUpdate(TKey key, TValue value);
+        void Remove(TKey key);
+    }
+
+    [Mutable]
+    public interface IMutableLinkedList<T> : ILinkedList<T>
+    {
+        IIterator<T> RemoveNode(IIterator<T> node);
+        IIterator<T> InsertNode(IIterator<T> nextNode, T item);
     }
 }

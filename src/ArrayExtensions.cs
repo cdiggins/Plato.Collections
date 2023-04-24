@@ -7,12 +7,11 @@
 // A library for working with pure functional arrays, using LINQ style extension functions.
 // Based on code that originally appeared in https://www.codeproject.com/Articles/140138/Immutable-Array-for-NET
 
-// TODO: remove the dependencies on IEnumerable etc. 
+// TODO: remove the dependencies on ISequence etc. 
 
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -752,9 +751,6 @@ namespace Plato
 
         public static IArray<long> PrefixSums(this IArray<int> self)
             => self.ToLongs().PrefixSums();
-
-        public static IArray<float> PrefixSums(this IArray<float> self)
-            => self.Scan(0f, (a, b) => a + b);
 
         public static IArray<double> PrefixSums(this IArray<double> self)
             => self.Scan(0.0, (a, b) => a + b);
